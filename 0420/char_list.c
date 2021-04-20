@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main(void) {
+	int i;
+	//전체 아스키 코드값 출력
+	for (i = 0; i < 128; i++) {
+		printf("%d %c\n", i, i);
+	}
+
+	return 0;
+
+}
