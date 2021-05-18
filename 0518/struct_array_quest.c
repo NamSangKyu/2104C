@@ -7,7 +7,8 @@ typedef struct employee {
     int position;
     int department;
 } Employee;
-
+char *position[] = {"사원","주임","대리","과장","부장","사장"};
+char *department[] = {"총무","영업","기술","회계"};
 Employee arr[10];
 int idx = 0;
 //배열 arr에 employee 한건의 내용을 입력받아서 배열에 저장하는 함수
@@ -30,11 +31,24 @@ void AddEmployee() {
 }
 //배열에 있는 입력된 모든 Employee를 출력
 void PrintAllEmployee() {
-
+    //idx 번호 전까지만 접근, 처음부터 끝까지 접근이 가능
+    int i;
+    for (i = 0; i < idx; i++) {
+        printf("%s %s %s %s\n", arr[i].no, arr[i].name,
+            position[arr[i].position],department[arr[i].department]);
+    }
+    printf("\n");
+}
+char * GetPosition(int pos) {
+   return position[pos];
+}
+char * GetDepartment(int dept) {
+    return department[dept];
 }
 int main(void) {
     AddEmployee();
     AddEmployee();
+    PrintAllEmployee();
 
     return 0;
 }
