@@ -77,6 +77,24 @@ void UpdateEmployee() {
     }
     printf("수정할 데이터가 없습니다.\n");
 }
+void DeleteEmployee() {
+    char no[10];
+    int i;
+    printf("삭제할 사번 입력 : ");
+    scanf_s("%s", no, sizeof(no));
+
+    for (i = 0; i < idx; i++) {
+        if (strcmp(arr[i].no, no) == 0) {
+            while (i < idx) {
+                arr[i] = arr[i + 1];
+                i++;
+            }
+            idx--;
+            return;
+        }
+    }
+    printf("삭제할 데이터가 없습니다.\n");
+}
 int main(void) {
     AddEmployee();
     AddEmployee();
