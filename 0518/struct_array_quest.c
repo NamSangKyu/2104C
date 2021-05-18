@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 //사원정보 저장할 구조체 작성
 //사번 - 문자열, 이름 - 문자열, 직급 - 숫자, 부서 - 숫자
 typedef struct employee {
@@ -35,20 +36,35 @@ void PrintAllEmployee() {
     int i;
     for (i = 0; i < idx; i++) {
         printf("%s %s %s %s\n", arr[i].no, arr[i].name,
-            position[arr[i].position],department[arr[i].department]);
+            position[arr[i].position-1],department[arr[i].department-1]);
     }
     printf("\n");
 }
-char * GetPosition(int pos) {
-   return position[pos];
+//검색 - 사번을 입력 받아서 검색을 수행, 검색결과가 있으면 해당 내용을 출력
+//      검색 결과가 없으면 '검색 결과가 없습니다.' 출력
+void SearchEmployee() {
+    char no[10];
+    int i;
+    printf("검색할 사번 입력 : ");
+    scanf_s("%s", no, sizeof(no));
+
+    for (i = 0; i < idx; i++) {
+        if (strcmp(arr[i].no, no) == 0) {
+            printf("%s %s %s %s\n", arr[i].no, arr[i].name,
+                position[arr[i].position-1], department[arr[i].department-1]);
+            return;//함수를 강제로 종료
+        }
+    }
+    printf("검색 결과가 없습니다.\n");
 }
-char * GetDepartment(int dept) {
-    return department[dept];
+//사원번호로 조회, 사원정보를 수정
+void UpdateEmployee() {
+
 }
 int main(void) {
     AddEmployee();
     AddEmployee();
     PrintAllEmployee();
-
+    SearchEmployee();
     return 0;
 }
