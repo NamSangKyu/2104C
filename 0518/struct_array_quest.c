@@ -59,7 +59,23 @@ void SearchEmployee() {
 }
 //사원번호로 조회, 사원정보를 수정
 void UpdateEmployee() {
+    char no[10];
+    int i;
+    printf("수정할 사번 입력 : ");
+    scanf_s("%s", no, sizeof(no));
 
+    for (i = 0; i < idx; i++) {
+        if (strcmp(arr[i].no, no) == 0) {
+            printf("수정할 이름 입력 : ");
+            scanf_s("%s", arr[i].name, sizeof(arr[i].name));
+            printf("수정할 직급 입력(1 - 사원, 2 - 주임, 3 - 대리, 4 - 과장, 5 - 부장, 6 - 사장 : ");
+            scanf_s("%d", &arr[i].position);
+            printf("수정할 부서 입력(1 - 총무, 2 - 영업, 3 - 기술, 4 - 회계 : ");
+            scanf_s("%d", &arr[i].department);
+            return;
+        }
+    }
+    printf("수정할 데이터가 없습니다.\n");
 }
 int main(void) {
     AddEmployee();
