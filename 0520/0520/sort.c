@@ -22,10 +22,25 @@ void SwapNumber(int *a, int *b) {
 }
 //버블 정렬
 void BubleSort(int *arr, int len) {
-
+    int i, j;
+    for (i = 0; i < len - 1; i++) {
+        for (j = 0; j < len - 1; j++) {
+            if (arr[j] > arr[j + 1])
+                SwapNumber(&arr[j], &arr[j + 1]);
+        }
+        printf("%d pass : ", i + 1);
+        PrintArray(arr, len);
+    }
 }
 int main(void) {
     int arr1[] = {8,4,6,9,7,1};
     BubleSort(arr1, 6);
     return 0;
 }
+
+
+
+
+
+
+
