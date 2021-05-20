@@ -36,7 +36,7 @@ void SelectSort(int *arr, int len) {
     //선택정렬 구현
     int i, j;
     for (i = 0; i < len - 1; i++) {
-        for (j = i; j < len; j++) {
+        for (j = i+1; j < len; j++) {
             if (arr[j] < arr[i])
                 SwapNumber(&arr[j], &arr[i]);
         }
@@ -44,11 +44,18 @@ void SelectSort(int *arr, int len) {
         PrintArray(arr, len);
     }
 }
+void InsertSort(int *arr, int len) {
+    //숫자 입력
+
+    //정렬 수행
+}
 int main(void) {
     int arr1[] = {8,4,6,9,7,1};
     int arr2[] = {8,4,6,9,7,1};
+    int arr3[6];
     //BubleSort(arr1, 6);
     SelectSort(arr2, 6);
+    InsertSort(arr3, 6);
     return 0;
 }
 
