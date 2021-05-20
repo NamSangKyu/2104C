@@ -45,16 +45,24 @@ void SelectSort(int *arr, int len) {
     }
 }
 void InsertSort(int *arr, int len) {
-    //숫자 입력
-
-    //정렬 수행
+    int i, j;
+    for (i = 0; i < len; i++) {
+        //숫자 입력
+        printf("숫자 입력 : ");
+        scanf_s("%d", &arr[i]);
+        //정렬 수행
+        for (j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
+            SwapNumber(&arr[j], &arr[j - 1]);
+        }
+        PrintArray(arr, len);
+    }
 }
 int main(void) {
     int arr1[] = {8,4,6,9,7,1};
     int arr2[] = {8,4,6,9,7,1};
     int arr3[6];
     //BubleSort(arr1, 6);
-    SelectSort(arr2, 6);
+    //SelectSort(arr2, 6);
     InsertSort(arr3, 6);
     return 0;
 }
