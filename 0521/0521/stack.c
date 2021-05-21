@@ -22,21 +22,28 @@ void pop(Stack *stack) { //2. 19:45
         printf("저장된 데이터가 없습니다.\n");
         return;
     }
-    //2. 마지막 데이터 출력
-    printf("pop : %d\n", stack->arr[stack->top]);
-    //3. top 감소
+    //2. top 감소
     stack->top--;
+    //3. 마지막 데이터 출력
+    printf("pop : %d\n", stack->arr[stack->top]);
 }
 int main(void) {
     //스택 선언
-    Stack stack;
+    Stack stack = { {0}, 0 };
     
-    /*
-        1. Data push
-        2. Data pop
-        0. Exit
-        input number : 
-    */
+    int no=-1;
+    while (no != 0) {
+        printf("1. Data push\n");
+        printf("2. Data pop\n");
+        printf("0. Exit\n");
+        printf("input number : ");
+        scanf_s("%d", &no);
+        if (no == 1)
+            push(&stack);
+        else if(no == 2)
+            pop(&stack);
+    }
+    
     
     return 0;
 }
