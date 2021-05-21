@@ -21,10 +21,34 @@ void CreateWaitNumber(Queue *queue) {
 }
 //dequeue - 은행원이 고객님 호출하는 부분
 void CallWaitNumber(Queue *queue) {
-
+    if (queue->count == 0) {
+        printf("대기중인 고객님이 없습니다.\n");
+        return;
+    }
+    printf("%d번 고객님 창구로 오세요\n",queue->arr[queue->front]);
+    queue->front = (queue->front + 1) % QUEUE_SIZE;
+    queue->count--;
 }
 int main() {
     Queue queue = { {0},0,0,0 };
-    
+    /*
+        1. 대기열 번호 표 발급
+        2. 고객님 호출
+        0. 프로그램 종료
+        메뉴번호를 입력하세요 :     
+    */
+    CreateWaitNumber(&queue);
+    CreateWaitNumber(&queue);
+    CreateWaitNumber(&queue);
+    CallWaitNumber(&queue);
+    CallWaitNumber(&queue);
+    CallWaitNumber(&queue);
+    CallWaitNumber(&queue);
+    CreateWaitNumber(&queue);
+    CreateWaitNumber(&queue);
+    CreateWaitNumber(&queue);
+    CallWaitNumber(&queue);
+    CallWaitNumber(&queue);
+    CallWaitNumber(&queue);
     return 0;
 }
