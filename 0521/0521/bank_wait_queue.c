@@ -37,18 +37,18 @@ int main() {
         0. 프로그램 종료
         메뉴번호를 입력하세요 :     
     */
-    CreateWaitNumber(&queue);
-    CreateWaitNumber(&queue);
-    CreateWaitNumber(&queue);
-    CallWaitNumber(&queue);
-    CallWaitNumber(&queue);
-    CallWaitNumber(&queue);
-    CallWaitNumber(&queue);
-    CreateWaitNumber(&queue);
-    CreateWaitNumber(&queue);
-    CreateWaitNumber(&queue);
-    CallWaitNumber(&queue);
-    CallWaitNumber(&queue);
-    CallWaitNumber(&queue);
+    int no = 0;
+    do {
+        printf("1. 대기열 번호 표 발급\n");
+        printf("2. 고객님 호출\n");
+        printf("0. 프로그램 종료\n");
+        printf("메뉴번호를 입력하세요 : ");
+        scanf_s("%d", &no);
+        if (no == 1)
+            CreateWaitNumber(&queue);
+        else if(no == 2)
+            CallWaitNumber(&queue);
+    } while (no != 0);
+    
     return 0;
 }
