@@ -31,5 +31,29 @@ void PrintAllNode(List* list) {
         printf("%d->", temp->val);//현재노드 저장하고 있는 숫자 출력
         temp = temp->next;//다음노드 이동
     }
+    printf("NULL\n");
 
 }
+Node* SearchNode(List* list, int value) {
+    //맨처음 노드부터 마지막 노드까지 이동
+    Node *temp = list->header;
+    while (temp != NULL) {
+        if (temp->val == value) {
+            printf("검색한 %d값이 있습니다.\n", temp->val);
+            return temp;
+        }
+        temp = temp->next;//다음노드 이동
+    }
+    printf("검색한 값이 없습니다.\n");
+    return NULL;
+}
+void UpdateNode(List* list, int search, int update) {
+    //search로 검색
+    //검색한 결과에 따라서 결과가 있으면 update로 값을 변경
+}
+
+
+
+
+
+

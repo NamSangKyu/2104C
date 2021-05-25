@@ -11,6 +11,8 @@ int main(void) {
     AddNode(&list, 1);
     AddNode(&list, 7);
     PrintAllNode(&list);
+    SearchNode(&list, 10);
+    SearchNode(&list, 4);
 
 
     return 0;
