@@ -49,11 +49,38 @@ Node* SearchNode(List* list, int value) {
 }
 void UpdateNode(List* list, int search, int update) {
     //search로 검색
+    Node* node = SearchNode(list, search);
+    if (node == NULL) return; //결과가 없으면 NULL이기 때문에 함수를 강제 종료
     //검색한 결과에 따라서 결과가 있으면 update로 값을 변경
+    node->val = update;
+    printf("수정 작업 완료 되었습니다.\n");
 }
 
-
-
+int NodeCount(List* list) {
+    return list->count;
+}
+void DeleteNode(List* list, int value) {
+    //삭제할 노드를 검색하면서 이전 노드 정보도 보관
+    Node *temp = list->header;
+    //삭제할 이전 노드를 관리할 포인터
+    Node *back = NULL;
+    while (temp != NULL) {
+        if (temp->val == value) {
+            //삭제 작업을 수행
+            //이전노드의 next 포인터를 현재 노드의 next 포인터를 저장해서 
+            //이전노드가 현재 노드의 다음노드로 이동할수 있게끔 연결
+            if (back == NULL)
+                list->header = temp->next;
+            else
+                back->next = temp->next;
+            free(temp);//완전히 삭제
+            list->count--;
+            break;
+        }
+        back = temp;//이전노드에 현재 노드를 저장
+        temp = temp->next;//다음노드로 이동
+    }
+}
 
 
 
