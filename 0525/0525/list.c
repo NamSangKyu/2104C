@@ -11,6 +11,7 @@ void AddNode(List* list, int value) {
     Node *temp = list->header; //리스트 첫번째 노드를 읽어옴(첫번째 노드를 헤더)
     if (temp == NULL) {
         list->header = node;
+        list->count++;
         return;//첫번째 노드 저장 후 함수 종료
     }
     //두번째 노드부터 저장하는 부분
@@ -20,5 +21,15 @@ void AddNode(List* list, int value) {
     //마지막 노드 next에 새로 만든 노드의 주소값을 저장
     temp->next = node;
     list->count++;//저장하고 있는 노드 개수 증가
+
+}
+void PrintAllNode(List* list) {
+    //맨처음 노드부터 마지막 노드까지 이동하면서 val을 출력
+    Node *temp = list->header;
+    printf("현재 노드 개수 : %d\n", list->count); 
+    while (temp != NULL) {
+        printf("%d->", temp->val);//현재노드 저장하고 있는 숫자 출력
+        temp = temp->next;//다음노드 이동
+    }
 
 }
