@@ -1,9 +1,15 @@
 #pragma once
 #ifndef __LIST_H__
 #define __LIST_H__
+typedef struct namecard {
+    char name[21];
+    char tel[12];
+    char company[21];
+    char position[13];
+}NameCard;
 //노드는 한건의 데이터를 나타냄
 typedef struct node {
-    int val;//값
+    NameCard val;//값
     struct node  * next; // 다음 노드 연결 - 마지막 노드는 다음 노드가 없기 때문에 NULL
 }Node;
 
@@ -13,13 +19,13 @@ typedef struct list {
 }List;
 
 //노드 추가 - 데이터 추가
-void AddNode(List* list,int value);
+void AddNode(List* list);
 //노드 검색 - 데이터 검색
-Node* SearchNode(List* list, int value);
+Node* SearchNode(List* list);
 //노드 수정 - 데이터 수정
-void UpdateNode(List* list, int search, int update);
+void UpdateNode(List* list);
 //노드 삭제 - 데이터 삭제
-void DeleteNode(List* list, int value);
+void DeleteNode(List* list);
 //전체 노드 출력 - 전체 데이터 출력
 void PrintAllNode(List* list);
 //노드 개수 리턴
