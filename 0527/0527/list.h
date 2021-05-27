@@ -30,4 +30,7 @@ void DeleteNode(List* list);
 void PrintAllNode(List* list);
 //노드 개수 리턴
 int NodeCount(List* list);
+//테스트용 데이터 셋팅
+void TestDataSet(List* list);
+
 #endif
