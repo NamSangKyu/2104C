@@ -67,6 +67,30 @@ Node* SearchNode(List* list) {
     printf("검색한 값이 없습니다.\n");
     return NULL;
 }
+void TestDataSet(List* list) {
+    Node *temp = list->header;
+    char *name[] = { "홍길동","고길동","김철수","이영희" };
+    char *tel[] = {"01000001111","01012341234","01077778888","01088889999"};
+    char *company[] = { "활빈당","둘리상사","OO고교", "OO예술관" };
+    char *position[] = { "두령","부장","교직원","관장" };
+    int i = 0;
+    temp = (Node *)malloc(sizeof(Node));
+    list->header = temp;
+    strcpy_s(temp->val.name, sizeof(temp->val.name), name[i]);
+    strcpy_s(temp->val.tel, sizeof(temp->val.tel), tel[i]);
+    strcpy_s(temp->val.company, sizeof(temp->val.company), company[i]);
+    strcpy_s(temp->val.position, sizeof(temp->val.position), position[i]);
+    for (i = 1; i < 4; i++) {
+        temp->next = (Node *)malloc(sizeof(Node));
+        temp = temp->next;
+        strcpy_s(temp->val.name, sizeof(temp->val.name), name[i]);
+        strcpy_s(temp->val.tel, sizeof(temp->val.tel), tel[i]);
+        strcpy_s(temp->val.company, sizeof(temp->val.company), company[i]);
+        strcpy_s(temp->val.position, sizeof(temp->val.position), position[i]);
+    }
+    temp->next = NULL;
+
+}
 /*
 void UpdateNode(List* list, int search, int update) {
     //search로 검색

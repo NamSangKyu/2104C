@@ -3,10 +3,7 @@
 
 int main(void) {
     List list = {NULL,0};
-
-    AddNode(&list);
-    AddNode(&list);
-    AddNode(&list);
+    TestDataSet(&list);
     PrintAllNode(&list);
     return 0;
 }
