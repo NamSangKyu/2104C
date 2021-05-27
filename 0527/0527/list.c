@@ -38,12 +38,16 @@ void PrintAllNode(List* list) {
     Node *temp = list->header;
     printf("현재 노드 개수 : %d\n", list->count); 
     while (temp != NULL) {
-        printf("%d->", temp->val);//현재노드 저장하고 있는 숫자 출력
+        //현재 노드에 있는 NameCard 정보를 출력
+        printf("%20s %12s %20s %12s\n", temp->val.name,
+            temp->val.tel, temp->val.company, temp->val.position);
+
         temp = temp->next;//다음노드 이동
     }
     printf("NULL\n");
 
 }
+/*
 Node* SearchNode(List* list, int value) {
     //맨처음 노드부터 마지막 노드까지 이동
     Node *temp = list->header;
@@ -91,6 +95,7 @@ void DeleteNode(List* list, int value) {
         temp = temp->next;//다음노드로 이동
     }
 }
+*/
 
 
 
