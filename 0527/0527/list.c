@@ -40,7 +40,7 @@ void PrintAllNode(List* list) {
     printf("현재 노드 개수 : %d\n", list->count); 
     while (temp != NULL) {
         //현재 노드에 있는 NameCard 정보를 출력
-        printf("%20s %12s %20s %12s\n", temp->val.name,
+        printf("%20s %17s %15s %10s\n", temp->val.name,
             temp->val.tel, temp->val.company, temp->val.position);
 
         temp = temp->next;//다음노드 이동
@@ -58,7 +58,7 @@ Node* SearchNode(List* list) {
     Node *temp = list->header;
     while (temp != NULL) {
         if (strcmp(name,temp->val.name)==0) {
-            printf("검색 결과 : %20s %12s %20s %12s\n", temp->val.name,
+            printf("검색 결과 : %10s %12s %20s %12s\n", temp->val.name,
                 temp->val.tel, temp->val.company, temp->val.position);
             return temp;
         }
@@ -80,6 +80,7 @@ void TestDataSet(List* list) {
     strcpy_s(temp->val.tel, sizeof(temp->val.tel), tel[i]);
     strcpy_s(temp->val.company, sizeof(temp->val.company), company[i]);
     strcpy_s(temp->val.position, sizeof(temp->val.position), position[i]);
+    
     for (i = 1; i < 4; i++) {
         temp->next = (Node *)malloc(sizeof(Node));
         temp = temp->next;
@@ -88,29 +89,41 @@ void TestDataSet(List* list) {
         strcpy_s(temp->val.company, sizeof(temp->val.company), company[i]);
         strcpy_s(temp->val.position, sizeof(temp->val.position), position[i]);
     }
+    list->count = 4;
     temp->next = NULL;
 
 }
-/*
-void UpdateNode(List* list, int search, int update) {
+void UpdateNode(List* list) {
     //search로 검색
-    Node* node = SearchNode(list, search);
+    Node* node = SearchNode(list);
     if (node == NULL) return; //결과가 없으면 NULL이기 때문에 함수를 강제 종료
     //검색한 결과에 따라서 결과가 있으면 update로 값을 변경
-    node->val = update;
+    printf("명함 정보 수정을 시작합니다.\n");
+    printf("이름 : ");
+    scanf_s("%s", node->val.name, sizeof(node->val.name));
+    printf("연락처 : ");
+    scanf_s("%s", node->val.tel, sizeof(node->val.tel));
+    printf("회사명 : ");
+    scanf_s("%s", node->val.company, sizeof(node->val.company));
+    printf("직급 : ");
+    scanf_s("%s", node->val.position, sizeof(node->val.position));
     printf("수정 작업 완료 되었습니다.\n");
 }
+
 
 int NodeCount(List* list) {
     return list->count;
 }
-void DeleteNode(List* list, int value) {
+void DeleteNode(List* list) {
+    char name[21];
+    printf("삭제할 이름 : ");
+    scanf_s("%s", name, sizeof(name));
     //삭제할 노드를 검색하면서 이전 노드 정보도 보관
     Node *temp = list->header;
     //삭제할 이전 노드를 관리할 포인터
     Node *back = NULL;
     while (temp != NULL) {
-        if (temp->val == value) {
+        if (strcmp(name, temp->val.name) == 0) {
             //삭제 작업을 수행
             //이전노드의 next 포인터를 현재 노드의 next 포인터를 저장해서 
             //이전노드가 현재 노드의 다음노드로 이동할수 있게끔 연결
@@ -126,7 +139,3 @@ void DeleteNode(List* list, int value) {
         temp = temp->next;//다음노드로 이동
     }
 }
-*/
-
-
-
