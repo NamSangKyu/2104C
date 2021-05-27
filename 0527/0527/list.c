@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
 void AddNode(List* list) {
@@ -47,13 +48,18 @@ void PrintAllNode(List* list) {
     printf("NULL\n");
 
 }
-/*
-Node* SearchNode(List* list, int value) {
+Node* SearchNode(List* list) {
+    //검색할 이름부터 입력
+    char name[21];
+    printf("검색할 이름 : ");
+    scanf_s("%s", name, sizeof(name));
+
     //맨처음 노드부터 마지막 노드까지 이동
     Node *temp = list->header;
     while (temp != NULL) {
-        if (temp->val == value) {
-            printf("검색한 %d값이 있습니다.\n", temp->val);
+        if (strcmp(name,temp->val.name)==0) {
+            printf("검색 결과 : %20s %12s %20s %12s\n", temp->val.name,
+                temp->val.tel, temp->val.company, temp->val.position);
             return temp;
         }
         temp = temp->next;//다음노드 이동
@@ -61,6 +67,7 @@ Node* SearchNode(List* list, int value) {
     printf("검색한 값이 없습니다.\n");
     return NULL;
 }
+/*
 void UpdateNode(List* list, int search, int update) {
     //search로 검색
     Node* node = SearchNode(list, search);
