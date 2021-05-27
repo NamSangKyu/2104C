@@ -2,10 +2,20 @@
 #include <stdlib.h>
 #include "list.h"
 
-void AddNode(List* list, int value) {
+void AddNode(List* list) {
     //받아온 데이터를 가지고 노드생성 - 동적할당 --> 생성한 노드가 제일 마지막 값
     Node *node = (Node *)malloc(sizeof(Node));
-    node->val = value;
+    
+    printf("명함 정보 등록을 시작합니다.\n");
+    printf("이름 : ");
+    scanf_s("%s", node->val.name, sizeof(node->val.name));
+    printf("연락처 : ");
+    scanf_s("%s", node->val.tel, sizeof(node->val.tel));
+    printf("회사명 : ");
+    scanf_s("%s", node->val.company, sizeof(node->val.company));
+    printf("직급 : ");
+    scanf_s("%s", node->val.position, sizeof(node->val.position));
+
     node->next = NULL;
     //리스트에서 마지막 노드를 찾음 - 마지막 노드는 next 포인터가 NULL
     Node *temp = list->header; //리스트 첫번째 노드를 읽어옴(첫번째 노드를 헤더)
