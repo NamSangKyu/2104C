@@ -26,6 +26,7 @@ Person& createPerson2() {
 int main(void) {
     Person &person = *createPerson1();
     cout << person.name << " " << person.tel << endl;
+    
     Person &ref = createPerson2();
     cout << ref.name << " " << ref.tel << endl;
     return 0;
