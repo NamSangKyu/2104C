@@ -21,6 +21,7 @@ public:
         age = 33;
     }
     Person(const char* n, int a) {
+        cout << "Person Constructor(const char *, int)" << endl;
         strcpy_s(name, sizeof(name), n);
         age = a;
     }
@@ -42,7 +43,7 @@ int main(void) {
     p.init("È«±æµ¿", 20);
     p.PrintPersonInfo();
 
-    Person p1("ÀÌ¿µÈñ", 56);
+    Person p1("ÀÌ¿µÈñ", 56);//¿øÇÏ´Â »ı¼ºÀÚ È£Ãâ
     p1.PrintPersonInfo();
 
     return 0;
