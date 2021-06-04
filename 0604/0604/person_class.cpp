@@ -15,6 +15,7 @@ private:
 public:
     //생성자 : 클래스를 이용하여 변수 선언시 제일먼저 딱 한번 실행되는 함수
     //        클래스가 생성이 되었을때 제일먼저 해야되는 일들을 처리하는 함수
+    // 생성자는 클래스명이 함수명, 리턴타입이 없는 함수다.
     Person(){//기본 생성자(default constructor) : 생성자를 작성하지 않으면 자동으로 삽입되는 생성자
         cout << "Person Constructor" << endl;
         strcpy_s(name, sizeof(name), "김철수");
