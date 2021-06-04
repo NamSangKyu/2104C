@@ -19,11 +19,23 @@ private:
     int position;
     int salary;
 public:
-    Employee(char *e, char *n, int p, int s) : position(p),salary(s){
+    Employee(const char *e, const char *n, int p, int s) : position(p),salary(s){
         eno = new char[strlen(e) + 1];
         strcpy_s(eno, strlen(e) + 1, e);
         name = new char[strlen(n) + 1];
         strcpy_s(name, strlen(n) + 1, n);
+    }
+    //복사 생성자 (copy constructor)
+    Employee(const Employee &obj) {
+        cout << "Copy Constructor" << endl;
+        //eno, name 동적할당 후 obj에 있는 eno,name를 복사 받음
+        eno = new char[strlen(obj.eno) + 1];
+        strcpy_s(eno, strlen(obj.eno) + 1, obj.eno);
+        name = new char[strlen(obj.name) + 1];
+        strcpy_s(name, strlen(obj.name) + 1, obj.name);
+        //position salary 저장
+        position = obj.position;
+        salary = obj.salary;        
     }
     //소멸자(Deconstructor)
     ~Employee() {
@@ -58,7 +70,10 @@ public:
     }
 };
 int main(void) {
+    Employee emp1("1111", "홍길동", ASSISTANT, 4000);
+    emp1.PrintEmployeeInfo();
 
-
+    Employee emp2 = emp1;
+    emp2.PrintEmployeeInfo();
     return 0;
 }
