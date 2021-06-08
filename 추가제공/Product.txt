@@ -1,0 +1,160 @@
+#include <iostream>
+#include <string>
+#include <map>
+#include <list>
+using namespace std;
+class SmartPhoneVO {
+private :
+	int modelNo;
+	string modelName;
+	string maker;
+	int price;
+	int ea;
+public :
+
+	SmartPhoneVO(int modelNo, string modelName, string maker, int price) {
+		this->modelNo = modelNo;
+		this->modelName = modelName;
+		this->maker = maker;
+		this->price = price;
+		this->ea = 20;
+	}
+	int getModelNo() {
+		return modelNo;
+	}
+	void setModelNo(int modelNo) {
+		this->modelNo = modelNo;
+	}
+	string getModelName() {
+		return modelName;
+	}
+	void setModelName(string modelName) {
+		this->modelName = modelName;
+	}
+	string getMaker() {
+		return maker;
+	}
+	void setMaker(string maker) {
+		this->maker = maker;
+	}
+	int getPrice() {
+		return price;
+	}
+	void setPrice(int price) {
+		this->price = price;
+	}
+	int getEa() {
+		return ea;
+	}
+	void setEa(int ea) {
+		this->ea = ea;
+	}
+	void printInfo(){
+		cout << "제품명 : " << this->getModelName() << endl;
+		cout << "제조사 : " << this->getMaker() << endl;
+		cout << "가  격 : " << this->getPrice() << endl;
+		cout << "재  고 : " << this->getEa() << endl;
+	}
+};
+class ServiceProduct {
+private:
+	map<string, int> sales;
+	map<int, SmartPhoneVO*> productList;
+	
+public:
+	ServiceProduct(map<string, int> sales,
+			map<int, SmartPhoneVO*> productList) {
+		this->sales = sales;
+		this->productList = productList;
+	}
+	map<string, int> getSales() {
+		return sales;
+	}
+	void setSales(map<string, int> sales) {
+		this->sales = sales;
+	}
+	map<int, SmartPhoneVO*> getProductList() {
+		return productList;
+	}
+	void setProductList(map<int, SmartPhoneVO*> productList) {
+		this->productList = productList;
+	}
+	
+
+	void sell(int no,int ea){
+		if(productList[no]->getEa() - ea<0){
+			cout << "재고 부족 판매 불가 현재 재고 : " << productList[no]->getEa() << endl;
+		}else{
+			productList[no]->setEa(productList[no]->getEa()-ea);
+			cout << productList[no]->getModelName() << " 판매 완료! 현재 재고 : " << productList[no]->getEa() << endl;
+			sales[productList[no]->getMaker()]  = sales[productList[no]->getMaker()]+productList[no]->getPrice()*ea;
+			cout << productList[no]->getMaker() << " 판매된 현재 제조사 매출액 : " << sales[productList[no]->getMaker()] << endl;
+		}
+			
+	}
+
+	void refund(int no,int ea){
+		productList[no]->setEa(productList[no]->getEa()+ea);
+		sales[productList[no]->getMaker()] = sales[productList[no]->getMaker()] - productList[no]->getPrice()*ea;
+		cout << productList[no]->getModelName() << " 환불 완료! 남은 재고 : " << productList[no]->getEa() << endl;
+		cout << productList[no]->getMaker() << "회사의 판매된 현재 제조사 매출액 : " << sales[productList[no]->getMaker()] << endl;
+	}
+
+	void put(int no,int ea){
+		productList[no]->setEa(productList[no]->getEa()+ea);
+		cout << productList[no]->getModelName() << " 입고 완료! 남은 재고 : " << productList[no]->getEa() << endl;
+	}
+	
+	void printAllSellPrice() {
+		map<string, int>::iterator it;
+		for(it=sales.begin();it!=sales.end();it++)
+			cout << it->first << " 회사 매출액 : " << it->second << endl;
+	}
+	void searchProduct(int no){
+		productList[no]->printInfo();
+	}
+};
+void main(){
+	map<int, SmartPhoneVO *> map1;
+		map1[1] = new SmartPhoneVO(1, "옵티머스G", "LG", 3000);
+		map1[2] = new SmartPhoneVO(2, "옵티머스GK", "LG", 4000);
+		map1[3] = new SmartPhoneVO(3, "옵티머스GPro", "LG", 4500) ;
+		map1[4] = new SmartPhoneVO(4, "옵티머스G2", "LG", 5000) ;
+		map1[5] = new SmartPhoneVO(5, "옵티머스LTE2", "LG", 2000) ;
+		map1[6] = new SmartPhoneVO(6, "옵티머스LTE3", "LG", 2500) ;
+		map1[7] = new SmartPhoneVO(7, "옵티머스TAG", "LG", 1500) ;
+		map1[8] = new SmartPhoneVO(8, "GraxyS", "SAMSUNG", 1500) ;
+		map1[9] = new SmartPhoneVO(9, "GraxyS2", "SAMSUNG", 2500);
+		map1[10] = new SmartPhoneVO(10, "GraxyS3", "SAMSUNG", 3000);
+		map1[11] = new SmartPhoneVO(11, "GraxyS4", "SAMSUNG", 3500);
+		map1[12] = new SmartPhoneVO(12, "GraxyNote", "SAMSUNG", 2500) ;
+		map1[13] = new SmartPhoneVO(13, "GraxyNote2", "SAMSUNG", 3500);
+		map1[14] = new SmartPhoneVO(14, "GraxyGrand", "SAMSUNG", 2000);
+		map1[15] = new SmartPhoneVO(15, "VEGA레이서", "SKY", 1500) ;
+		map1[16] = new SmartPhoneVO(16, "VEGA아이언", "SKY", 3500) ;
+		map1[17] = new SmartPhoneVO(17, "VEGA레이서2", "SKY", 2000);
+		map1[18] = new SmartPhoneVO(18, "VEGA마하", "SKY", 3000) ;
+		list<string> lst;
+		lst.push_back("LG");
+		lst.push_back("SKY");
+		lst.push_back("SAMSUNG");
+		map<string,int> saleList;
+		list<string>::iterator it;
+		for(it = lst.begin();it!=lst.end();it++){
+			saleList[*it]= 0;
+		}
+		ServiceProduct p(saleList,map1);
+		p.sell(1,10);
+		p.sell(1,10);
+		p.sell(1,10);
+		p.sell(9,10);
+		p.sell(10,10);
+		p.sell(15,10);
+		p.sell(16,10);
+		p.refund(1,10);
+		p.put(5,20);
+		putchar('\n');
+		p.searchProduct(1);
+		putchar('\n');
+		p.printAllSellPrice();
+}

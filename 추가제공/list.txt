@@ -1,0 +1,29 @@
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main(void)
+{
+	list<int> lst;
+	//추가
+	lst.push_back(1);//맨뒤에 값을 추가 
+	lst.push_back(2);
+	lst.push_back(3);
+	lst.push_back(4);
+	lst.push_front(5);//맨앞에 값을 추가
+	lst.push_front(1);
+	lst.push_front(2);
+
+	cout << "저장된 개수 : " << lst.size() << endl;
+	lst.remove(2); //해당하는 값 삭제
+				   //lst.clear();//리스트에 있는 모든 내용을 비움
+	cout << "리스트에 내용이 있냐? " << lst.empty();
+	cout << endl;
+
+	//조회
+	list<int>::iterator it;
+	for (it = lst.begin(); it != lst.end(); it++)
+		cout << *it << endl;
+
+	return 0;
+}

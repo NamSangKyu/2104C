@@ -1,0 +1,31 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main(void)
+{
+	map<char, double> m;
+
+	m['A'] = 3.14;
+	m['B'] = 1.14;
+	m['C'] = 2.14;
+	m['A'] = 0.14;
+	m['D'] = 1.34;
+	m['E'] = 4.54;
+	m['F'] = 6.64;
+
+	cout << "저장된 값의 개수 : " << m.size() << endl;
+	cout << "비어 있냐? " << m.empty() << endl;
+	m.erase('A');//삭제
+	//cout << m['B'] << endl;//한개의 값 꺼내기
+	//m.clear(); //맵에 있는 내용 전부 삭제
+
+	map<char, double>::iterator it;
+	for (it = m.begin(); it != m.end(); it++)
+	{
+		cout << "키값 : " << it->first;
+		cout << "\t값 : " << it->second << endl;
+	}
+
+	return 0;
+}
