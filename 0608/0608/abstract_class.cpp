@@ -2,8 +2,12 @@
 using namespace std;
 class OnOff {
 public:
-    void powerOn() {}
-    void powerOff() {}
+    void powerOn() {
+        cout << "기본 파워 On" << endl;
+    }
+    void powerOff() {
+        cout << "기본 파워 Off" << endl;
+    }
 };
 class TV : public OnOff {
 private:
@@ -34,10 +38,11 @@ public:
 int main(void) {
     Boiler boiler;
     TV tv;
-    boiler.powerOn();
-    boiler.powerOff();
-    tv.powerOn();
-    tv.powerOff();
+    OnOff *onoff;
+    onoff = &boiler;
+    onoff->powerOn();
+    onoff->powerOff();
+
 
     return 0;
 }
