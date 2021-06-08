@@ -13,6 +13,7 @@ private:
     //2. private 생성자 : 외부 생성을 막음
     Number() {
         cout << "Number()" << endl;
+        count++;
     }
 public:
     //3. instance를 리턴시킬 static 함수 필요
@@ -33,5 +34,6 @@ int main(void) {
     Number &n = Number::GetInstance();
     n.PrintCount();
     Number::GetInstance().PrintCount();
+    //Number p;//생성자가 private이면 생성이 안됨
     return 0;
 }
